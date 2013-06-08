@@ -1,0 +1,18 @@
+{
+	"name": "UserLogin",
+	"version": "0.1.0",
+	"description": "HelloWorld",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo 'Error: no test specified! Configure in packate.json' && exit 1"
+	},
+	"repository"; "",
+	"keywords": [
+	    "node.js",
+	    "Eclipse",
+	    "Nodeclipse"
+	],
+	"author": "",
+	"licence": "BSD",
+	"readmeFilename": "README.md"
+}
