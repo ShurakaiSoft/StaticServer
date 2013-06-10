@@ -5,7 +5,7 @@
 var http = require('http');
 
 function start(port, callback) {
-	var staticServer = require('./lib/static-server').init({
+	var staticServer = require('../lib/static-server').init({
 		webroot: '../public',
 		defaultFile: 'test.html'
 	});
@@ -29,8 +29,9 @@ function start(port, callback) {
 			}
 		});
 		
-	}).listen(port);
-	callback(null);
+	}).listen(port, function (err) {
+		callback(err);
+	});
 }
 
 module.exports = {

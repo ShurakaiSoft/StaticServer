@@ -1,8 +1,8 @@
 {
-	"name": "UserLogin",
+	"name": "StaticServer",
 	"version": "0.1.0",
-	"description": "HelloWorld",
-	"main": "server.js",
+	"description": "Static http file server",
+	"main": "index.js",
 	"scripts": {
 		"test": "echo 'Error: no test specified! Configure in packate.json' && exit 1"
 	},
@@ -10,9 +10,10 @@
 	"keywords": [
 	    "node.js",
 	    "Eclipse",
-	    "Nodeclipse"
+	    "Nodeclipse",
+	    "static"
 	],
-	"author": "",
+	"author": "Stephen Parker",
 	"licence": "BSD",
 	"readmeFilename": "README.md"
 }
