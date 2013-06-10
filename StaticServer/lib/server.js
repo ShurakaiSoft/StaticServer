@@ -2,21 +2,16 @@
  * Create a http server.
  */
 
-var http = require('http');
-
 function start(port, callback) {
 	var staticServer = require('../lib/static-server').init({
 		webroot: '../public',
 		defaultFile: 'test.html'
 	});
 	
-	http.createServer(function (req, res) {
-		// call to static server goes here...
-		
+	require('http').createServer(function (req, res) {
 		
 		staticServer.handleRequest(req, res, function (err) {
-			console.log("Error handling request: ", err);
-			// do stuff with errors.
+			console.log("Request error: ", err);
 			switch (err) {
 			case 404:
 				res.writeHead(404, {"Content-Type": "text/plain"});
@@ -34,6 +29,4 @@ function start(port, callback) {
 	});
 }
 
-module.exports = {
-	start: start	
-};
+exports.start = start;	
