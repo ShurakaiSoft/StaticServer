@@ -7,17 +7,20 @@ there are a number of excellent open source static http servers already out
 there.
 
 ## Overview
-`./app` has an example of how to use this module.
+`lib/static-server.js` is what this is all about. `lib/mime.js` is a 
+dependency that could be replaced with one that's more full featured.
 
-`./lib/static-server.js` the main module which depends on `./lib/mime.js`.
+`example` has an example of how to use this module.
 
-`tests` contains `mocha` unit tests.
+`tests` contains `mocha` unit tests in the BDD style. They're not complete. I
+haven't gone to the trouble of mocking `requests` and `responses`.
 
 `public` contains a simple static test website. 
 	
 ## Limitations
 
 This is a learning exercise and therefore has a number of limitations.
+
 * It only handles a subset of website content: `.js`, `.css`, `.html` and 
   `.jpg`. All other files return as `"ContentType": "text/plain"`. 
 * There is no webroot security so someone might request `../../../etc/passwd`

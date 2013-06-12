@@ -28,6 +28,6 @@ require('http').createServer(function (req, res) {
 	if (err) {
 		console.log(err);
 	} else {
-		console.log("Server listening on ", port);	
+		console.log("Server listening on", port);	
 	}
 });
