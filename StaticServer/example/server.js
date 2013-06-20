@@ -2,22 +2,39 @@
  * Index file.
  */
 
-var port = 1337;
+var fs = require('fs');
+var http = require('http');
 
-var staticServer = require('../lib/static-server').init({
+var port = 1337;
+var options = {
 	webroot: '../public',
 	defaultFile: 'test.html',
-	streaming: false
-});
-	
-require('http').createServer(function (req, res) {
-		
+	streaming: true,
+	cacheFetchFunc: function loadFileIntoCache(pathname, callback) {
+		fs.readFile(pathname, function (err, data) {
+			if (err) {
+				console.log("Error Reading file:", err);
+				callback(500);
+				return;
+			}
+			callback(null, data);
+		});
+	}
+};
+var staticServer = require('../lib/static-server').init(options);
+
+
+http.createServer(function (req, res) {
 	staticServer.handleRequest(req, res, function (err) {
 		console.log("Request error: ", err);
 		switch (err) {
 		case 404:
 			res.writeHead(404, {"Content-Type": "text/plain"});
 			res.end("404, File not Found.");
+			break;
+		case 405:
+			res.writeHead(405, {'Content-Type': 'text/plain'});
+			res.end("405, Meltod Not Allowed");
 			break;
 		default:
 			res.writeHead(500, {"Content-Type": "text/plain"});

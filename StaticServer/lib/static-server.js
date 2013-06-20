@@ -15,21 +15,6 @@ var fileCache = null;
 
 
 /**
- * The method the cache will use to load a file from the file system. 
- */
-function loadFile(key, callback) {
-	fs.readFile(key, function (err, data) {
-		if (err) {
-			console.log("Error Reading file:", err);
-			callback(500);
-			return;
-		}
-		callback(null, data);
-	});
-}
-
-
-/**
  * Serve up a cached file. As opposed to streaming files.
  * 
  */
@@ -102,10 +87,12 @@ function validateRequest(pathname, res, callback) {
 function init(options) {
 	console.log('Creating a static file server.');
 	options = options || {};
+	configOptions.defaultFile = options.defaultFile || 'index.html';
 	configOptions.webroot = options.webroot || '.';
 	configOptions.streaming = options.streaming || false;
+	configOptions.cacheFetchFunc = options.cacheFetchFunc || null;
 	fileCache = cache.init({
-		addFunc: loadFile
+		addFunc: configOptions.cacheFetchFunc
 	});
 	
 	if (options.defaultFile) {
@@ -116,8 +103,7 @@ function init(options) {
 			var pathname = '';
 
 			if (req.method !== 'GET') {
-				res.writeHead(405, {'Content-Type': 'text/plain'});
-				res.end("405, Meltod Not Allowed");
+				callback(405);
 				return;
 			}
 			pathname = configOptions.webroot + url.parse(req.url).pathname;
