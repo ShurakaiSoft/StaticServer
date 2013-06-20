@@ -15,9 +15,7 @@ var fileCache = null;
 
 
 /**
- * A Bridge Pattern for the cache to be able to load the file data it is 
- * caching for us.
- * 
+ * The method the cache will use to load a file from the file system. 
  */
 function loadFile(key, callback) {
 	fs.readFile(key, function (err, data) {
@@ -30,23 +28,21 @@ function loadFile(key, callback) {
 	});
 }
 
-/**
- * Given a file it will send it.
- * 
- */
-function sendFile(pathname, res, data, callback) {
-	console.log("sending ", pathname);
-	res.writeHead(200, {'Content-Type': getContentType(pathname)});
-	res.end(data, 'binary');
-}
 
 /**
- * Use the cache to send files and not stream them.
+ * Serve up a cached file. As opposed to streaming files.
  * 
  */
 function sendCachedFile(pathname, res, callback) {
 	fileCache.fetch(pathname, function (err, value) {
-		sendFile(pathname, res, value, callback);
+		if (err) {
+			console.log("cache.fetch returned error:", err);
+			callback(500);
+			return;
+		}
+		console.log("sending ", pathname);
+		res.writeHead(200, {'Content-Type': getContentType(pathname)});
+		res.end(value, 'binary');
 	});
 }
 

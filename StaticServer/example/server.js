@@ -6,7 +6,8 @@ var port = 1337;
 
 var staticServer = require('../lib/static-server').init({
 	webroot: '../public',
-	defaultFile: 'test.html'
+	defaultFile: 'test.html',
+	streaming: false
 });
 	
 require('http').createServer(function (req, res) {
