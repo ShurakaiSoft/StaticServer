@@ -21,32 +21,36 @@ haven't gone to the trouble of mocking `requests` and `responses`.
 
 First require the module.
 
-`var ss = require('static-server');`
+    var ss = require('static-server');
 
 Which contains a single function `init` which is used to create a static file 
 server.
 
-`var staticServer = ss.init(options);`
+    var staticServer = ss.init(options);
  
 `init` takes a single configuration object argument, which can contain a map of
 the following options.
 
-`webroot: '../public'`
+    webroot: '../public'
+    
 Set the servers root directory. Default: `.` which is probably not what you
 want, so change it.
 
-`defaultFile: 'home.htm'`
+    defaultFile: 'home.htm'
+    
 Set the default file which is appended to directory requests. Default: `index.html`
 
-`streaming: true`
+    streaming: true
+    
 A switch to stream files directly from the file system or cache files (in user
 space). Note: the OS probably does a better job of caching files than this 
 implementation, so streaming is recommended.
 
-`cacheFetchFunc: function loadFileIntoCache(pathname, callback) {
-	// load file... 
-	callback(err, fileData);
-}`
+    cacheFetchFunc: function loadFileIntoCache(pathname, callback) {
+    	// load file... 
+    	callback(err, fileData);
+    }
+    
 A function that defines how to get fileData for the cache. It takes two arguments 
 `(pathname, callback)`, where `pathname` is the filename relative to webroot.
 The callback is passed two arguments `(err, fileData)`, where `fileData` is the contents
