@@ -1,10 +1,10 @@
 {
 	"name": "StaticServer",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Static http file server",
-	"main": "./app/index.js",
+	"main": "lib/static-server.js",
 	"scripts": {
-		"test": "echo 'Error: no test specified! Configure in packate.json' && exit 1"
+		"test": "mocha -R Spec test/*Test.js"
 	},
 	"repository"; "https://github.com/ShurakaiSoft/StaticServer.git",
 	"keywords": [
