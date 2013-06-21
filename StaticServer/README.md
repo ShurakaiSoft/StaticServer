@@ -61,6 +61,11 @@ Then call `handleRequest(req, res, callback)`.
 The callback is passed a single argument `(err)`, where `err` is an HTTP status
 code for the error.
 
+
+## Developing
+
+The cache is initialised even when it's not being used.
+
 	
 ## Limitations
 
