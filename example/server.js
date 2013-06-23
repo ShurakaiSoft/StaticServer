@@ -9,7 +9,7 @@ var port = 1337;
 var options = {
 	webroot: '../public',
 	defaultFile: 'test.html',
-	streaming: true,
+	cache: false,
 	cacheFetchFunc: function loadFileIntoCache(pathname, callback) {
 		fs.readFile(pathname, function (err, data) {
 			if (err) {

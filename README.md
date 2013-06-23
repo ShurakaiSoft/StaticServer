@@ -40,10 +40,10 @@ want, so change it.
     
 Set the default file which is appended to directory requests. Default: `index.html`
 
-    streaming: true
+    cache: true
     
-A switch to stream files directly from the file system or cache files (in user
-space). Note: the OS probably does a better job of caching files than this 
+A switch to cache files (in user space) or stream files directly from the file 
+system. Note: the OS probably does a better job of caching files than this 
 implementation, so streaming is recommended.
 
     cacheFetchFunc: function loadFileIntoCache(pathname, callback) {
