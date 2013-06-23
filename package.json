@@ -6,13 +6,16 @@
 	"scripts": {
 		"test": "mocha -R Spec test/*Test.js"
 	},
-	"repository"; "https://github.com/ShurakaiSoft/StaticServer.git",
+	"repository": "https://github.com/ShurakaiSoft/StaticServer.git",
 	"keywords": [
 	    "http",
 	    "static",
 	    "file",
 	    "server"
 	],
+	"scripts": {
+		"test": "mocha -R spec test/*.js"
+	},
 	"author": "Stephen Parker",
 	"licence": "BSD",
 	"readmeFilename": "README.md",
